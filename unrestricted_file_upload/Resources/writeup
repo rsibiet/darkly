@@ -1,0 +1,24 @@
+********** Unrestricted File Upload **********
+
+URL :
+- http://192.168.145.128/?page=upload
+
+Preview :
+Using a tampering tool (Burp) to intercept the request and modify the http-header before it reached the server.
+We will test if the files uploaded are correctly check.
+
+Steps :
+- Launch and set Burp Suite.
+- Set Firefox settings with Proxy and Burp Certificat.
+- In Burp, go to Proxy/intercept and set Intercept Off to On.
+- Now upload an unvalid file using the form and submit it.
+- Going back to Burp we can see the first request made.
+- In the Raw window:
+	-> change the Content-Type `text/html` by `image/jpeg`
+- Forward the request
+
+Fix :
+- Make sure to check the image signature using functions like `exif_imagetype` in Php.
+- Never only rely on MIME cache because as we just saw it can be corrupted.
+
+Flag: 46910d9ce35b385885a9f7e2b336249d622f29b267a1771fbacf52133beddba8

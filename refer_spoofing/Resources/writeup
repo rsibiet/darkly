@@ -1,0 +1,31 @@
+********** Refer spoofing **********
+
+URL :
+-  http://192.168.145.129/?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c
+
+Preview :
+Refer spoofing sends incorrect referer information in an HTTP request in order to prevent a website from obtaining accurate data on the identity of the web page previously visited by the user.
+
+Http-refer is an HTTP header field that identifies the address of the webpage that linked to the resource being requested. By checking the referrer, the new webpage can see where the request originated.
+
+Steps :
+- click on '© BornToSec' to the bottom of the mean page.
+- On google chrome: right click -> inspect -> Elements
+- We can see many lines of comments in the html code.
+- One line says: `You must cumming from : “https://www.nsa.gov/“ to go to the next step`
+- Scrolling down, another line says: `Let’s the use this browser: “ft_bornToSec” It will help you a lot`
+- Following the first line it indicates us to modify the referring informations sent through the header.
+- Now let's use `Burp` as tampering tool to intercept the request before it reaches the server
+- Set `intercept` to `On` in `Burp`
+- Reload the webpage
+- The first request has been intercepted by `Burp`
+- In the `Headers` field replace `User-Agent` current content by `ft_bornToSec`
+- Replace `Referer` field content by `https://www.nsa.gov/`
+- Forward the request
+
+Fix :
+- No real way to protect it because it is unreliable
+- If this value is needed then it can be checked by functions like `htmlspecialchars()`
+- Don't use it if not needed
+
+Flag: f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188

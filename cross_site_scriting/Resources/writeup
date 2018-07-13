@@ -1,0 +1,21 @@
+********** Cross site scripting (XSS) **********
+
+URL :
+- http://192.168.145.128/?page=media&src=nsa
+
+Preview :
+XSS attacks are a type of injection, in which malicious scripts are injected into the web sites. XSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. The data is included in dynamic content that is sent to a web user without being validated for malicious content.
+
+Steps :
+- Click on the NSA logo, which redirects us to a new page.
+
+The objectif is to inject the script `<script>alert('hello')</script>` after the src key.
+- Convert the script in base 64 with https://www.base64decode.org/
+Result: PHNjcmlwdD5hbGVydCgnaGVsbG8nKTwvc2NyaXB0Pg==
+
+- Now replace nsa by : 'data:text/html;base64,PHNjcmlwdD5hbGVydCgnaGVsbG8nKTwvc2NyaXB0Pg=='
+
+Fix :
+- Check and validate all dynamic data for malicious content ('htmlspecialchars' for instance).
+
+Flag: 928D819FC19405AE09921A2B71227BD9ABA106F9D2D37AC412E9E5A750F1506D

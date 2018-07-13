@@ -1,0 +1,27 @@
+********** Programmation error **********
+
+URL :
+- http://192.168.86.129/?page=feedback
+
+Preview :
+Bad coding from programmer, errors appearing in navigator logs.
+
+?page=feedback:83 Uncaught ReferenceError: checkForm is not defined
+    at HTMLInputElement.onclick (?page=feedback:83)
+onclick @ ?page=feedback:83
+?page=feedback:57 Uncaught ReferenceError: mtxMessage is not defined
+    at validate_form (?page=feedback:57)
+    at HTMLFormElement.onsubmit (?page=feedback:68)
+
+Steps :
+- First we tried to create some XSS attacks
+- The form seems to be handling XSS because we can see it removes the script tags passed to it
+- After trying different solutions a flag appeared when we randomly entered a unique character ('a', 'c', 'p', ...)
+- After looking at the page code using the navigator console we can see that the function call to handle the sign form doesn't exist
+- There is also a typing error which causes the `validate_required()` function to not work properly. `mtxtMessage` is expected as a field value but `mtxMessage` is given instead.
+
+Fix :
+- Learn how to code properly
+- Test your code
+
+Flag: 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E

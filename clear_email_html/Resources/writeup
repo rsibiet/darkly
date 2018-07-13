@@ -1,0 +1,19 @@
+********** Hardcoded sensitive content **********
+
+URL :
+- http://192.168.101.129/?page=recover
+
+Preview :
+Clear email hardcoded in html page.
+
+Steps :
+Go to SignIn then Forget Password page.
+in Google chrome, on 'SUBMIT' button: right click -> inspect -> Elements
+We can see that the corresponding value is an email hardcoded.
+-> Change the email value and click on submit.
+
+Fix :
+- Never write personal informations in the code of public pages.
+- Good practice is to use a config file with restricted access on the server.
+
+Flag: 1d4855f7337c0c14b6f44946872c4eb33853f40b2d54393fbe94f49f1e19bbb0

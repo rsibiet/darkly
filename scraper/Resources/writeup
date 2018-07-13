@@ -1,0 +1,18 @@
+********** Scraper **********
+
+URL :
+- http://192.168.86.128/.hidden/
+
+Preview :
+The file robots.txt have stored a directory named ".hidden" who contains a lot of url.
+Each url have other url and a file text named "README".
+The objectif is to read all of the README files until find interresting containt (like a flag for intance)
+
+Steps :
+Let's coding a little script to read all "README" file stored on these url.
+
+--> execute it and wait some seconds.
+
+The output will looks like:
+
+http://192.168.86.128/.hidden/whtccjokayshttvxycsvykxcfm/igeemtxnvexvxezqwntmzjltkt/lmpanswobhwcozdqixbowvbrhw/ FLAG: 99dde1d35d1fdd283924d84e6d9f1d820

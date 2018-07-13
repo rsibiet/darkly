@@ -1,0 +1,17 @@
+********** Unvalidated redirects **********
+
+URL :
+- http://192.168.145.128/index.php?page=redirect&site=
+
+Preview :
+The application accepts untrusted url redirections that could cause the web application to redirect within itself or to an untrusted url (malicious one).
+
+Steps :
+- On home page, right click on Twitter logo and copy the link address.
+- Paste it in the research bar: http://192.168.145.128/index.php?page=redirect&site=twitter
+- remove the site value and reload the page
+
+Fix :
+- Control if the url is in your list of autorized url.
+
+Flag: b12c4b2cb8094750ae121a676269aa9e2872d07ac06e429d25a63196ec1c8c1d0

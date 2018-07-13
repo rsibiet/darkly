@@ -1,0 +1,19 @@
+********** Incorrect data validation **********
+
+URL :
+- http://192.168.145.128/?page=survey
+
+Preview :
+The request handlers don't check all the errors for the data being sent through the survey form.
+Strings values are checked but not long numbers.
+
+Steps :
+- Go to the Survey page
+- in google chrome, on a grade value: Right click -> inspect -> Elements
+- Replace one of the value by 999999999999999
+- Submit the value
+
+Fix :
+- Control the value received.
+
+Flag: 03A944B434D5BAFF05F46C4BEDE5792551A2595574BCAFC9A6E25F67C382CCAA
